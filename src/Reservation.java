@@ -9,6 +9,10 @@ public class Reservation {
         this.flight = flight;
     }
 
+    public Passenger getPassenger() {
+        return passenger;
+    }
+
     @Override
     public String toString() {
         return "Reservation ID: " + reservationId +

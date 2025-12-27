@@ -1,14 +1,15 @@
-public class Flight {
-    private String flightNumber;
-    private String departureCity;
-    private String arrivalCity;
-    private int totalSeats;
-    private int bookedSeats;
+public abstract class Flight {
 
-    public Flight(String flightNumber, String departureCity, String arrivalCity, int totalSeats) {
+    protected String flightNumber;
+    protected String from;
+    protected String to;
+    protected int totalSeats;
+    protected int bookedSeats;
+
+    public Flight(String flightNumber, String from, String to, int totalSeats) {
         this.flightNumber = flightNumber;
-        this.departureCity = departureCity;
-        this.arrivalCity = arrivalCity;
+        this.from = from;
+        this.to = to;
         this.totalSeats = totalSeats;
         this.bookedSeats = 0;
     }
@@ -21,15 +22,19 @@ public class Flight {
         return false;
     }
 
+    public int getAvailableSeats() {
+        return totalSeats - bookedSeats;
+    }
+
     public String getFlightNumber() {
         return flightNumber;
     }
 
+    public abstract double calculatePrice();
+
     @Override
     public String toString() {
-        return "Flight: " + flightNumber +
-                " | From: " + departureCity +
-                " | To: " + arrivalCity +
-                " | Seats: " + bookedSeats + "/" + totalSeats;
+        return flightNumber + " (" + from + " → " + to +
+                "), seats: " + bookedSeats + "/" + totalSeats;
     }
 }
